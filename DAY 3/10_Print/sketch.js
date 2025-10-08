@@ -5,7 +5,7 @@ function setup() {
   background("#b0e0e6"); // light purple background
   x = 0;
   y = 0;
-  size = 50;
+  size = 20;
 }
 
 function draw() {
