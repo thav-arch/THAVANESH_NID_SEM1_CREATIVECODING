@@ -15,7 +15,7 @@ function mouseDragged() {
 }
 
 function mousePressed() {
-  
+  drawSnowman(mouseX, mouseY);
 }
 
 function drawSnowman(x, y) {
