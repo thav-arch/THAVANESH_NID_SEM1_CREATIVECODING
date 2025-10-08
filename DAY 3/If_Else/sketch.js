@@ -4,15 +4,15 @@ function setup() {
 }
 
 function draw() {
-  
+
 }
 
-function mouseClicked  () {
-if (mouseY < height/2) 
-{fill (20)
-rect (mouseX,mouseY, 40,20);
-} else {
-fill(90)
-ellipse(mouseX,mouseY,40,40)
-}
+function mouseDragged() {
+  if (mouseY < height / 2) {
+    fill("green")
+    rect(mouseX, mouseY, 40, 20);
+  } else {
+    fill("red")
+    ellipse(mouseX, mouseY, 40, 40)
+  }
 }
