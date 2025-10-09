@@ -1,40 +1,40 @@
-//angleMode(Degree)
-
-let noPetals = 12;
-
+let size = 250, f1, f2, f3, f0;
 function setup() {
-  createCanvas(400, 400);
-  background(220);
-  angleMode(DEGREES);
+  createCanvas(1000, 1000);
+  frameRate(3);
+}
+
+function preload() {
+
+f0= loadImage ("Images/f0.png")
+f1= loadImage ("Images/f1.png")
+f2= loadImage ("Images/f2.png")
+f3= loadImage ("Images/f3.png")
+
 }
 
 function draw() {
-  push();
+  background(220);
 
-  //origin
-  translate(width / 2, height / 2);
-  ellipse(0, 0, 60, 60);
-  //petals
-  
-  for (let i=0; i=noPetals; i++) {
-    fill(80,0,80,10);
-    ellipse(80, 0, 60, 60);
-    rotate (360/noPetals);
+  for (let i = 0; i < width; i=i+size) {
+    for (let j = 0; j < height; j =j +size) {
+
+      let choice = floor(random(0, 4));
+
+      if (choice == 0) {
+        image(f0, i,j); 
+      } 
+      else if (choice == 1) {
+        image(f1, i,j);
+      } 
+      else if(choice == 2){
+         image(f2, i,j);
+      } 
+      else {
+        image(f3, i,j);
+
+      }
+    }
+      
   }
-  // rotate (60);
-  // ellipse(80,0,100,50);
-  // rotate (60);
-  // ellipse(80,0,100,50);
-  // rotate (60);
-  // ellipse(80,0,100,50);
-  // rotate (60);
-  // ellipse(80,0,100,50);
-  // rotate (60);
-  // ellipse(80,0,100,50);
-  // rotate (60);
-  // ellipse(80,0,100,50);
-  pop();
-
-
-
 }
