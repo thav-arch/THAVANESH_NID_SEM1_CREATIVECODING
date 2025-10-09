@@ -1,5 +1,6 @@
 let x, y, size, choice;
 
+
 function setup() {
   createCanvas(600, 600);
   background("#b0e0e6"); // light purple background
@@ -12,7 +13,6 @@ function draw() {
   // Random stroke weight between 0 and 2
   strokeWeight(random(0, 2));
 
-  
   stroke(random(0,250), random(0,250), random(0,250));
 
   // Random line orientation
@@ -36,3 +36,20 @@ function draw() {
     noLoop();
   }
 }
+
+// let x, y, size, choice;
+
+// function setup() {
+//   createCanvas(700, 700);
+//   background(34);
+//   let x=0;
+//   let y=0;
+//   size=20;
+// }
+
+// function draw () {
+//   choice= random(0,1)
+//   if (choice<0.5){
+
+//   }
+// }
