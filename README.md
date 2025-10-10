@@ -1,6 +1,6 @@
 # 📦DGD 25 - Creative coding in P5js
+https://github.com/thav-arch/THAVANESH_NID_SEM1_CREATIVECODING
 
-A brief description of what your project does and why it exists.
 
 ## 🚀 Projects according to schedule
 
@@ -13,6 +13,4 @@ A brief description of what your project does and why it exists.
 ## 🛠️ Technologies Used
 - Language/Framework: P5.js in VScode
   
-# Check the repo
-gitHub Link https://github.com/thav-arch/THAVANESH_NID_SEM1_CREATIVECODING
 
