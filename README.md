@@ -15,5 +15,3 @@ A brief description of what your project does and why it exists.
 # Check the repo
 gitHub Link https://github.com/thav-arch/THAVANESH_NID_SEM1_CREATIVECODING
 
-# Navigate into the directory
-cd your-repo-name
