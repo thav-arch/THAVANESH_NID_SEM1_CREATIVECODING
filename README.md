@@ -1,5 +1,5 @@
 # 📦DGD 25 - Creative coding in P5js
-https://github.com/thav-arch/THAVANESH_NID_SEM1_CREATIVECODING
+[https://github.com/thav-arch/THAVANESH_NID_SEM1_CREATIVECODING](https://github.com/thav-arch/THAVANESH_NID_SEM1_CREATIVECODING.git)
 
 
 ## 🚀 Projects according to schedule
