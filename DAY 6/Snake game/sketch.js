@@ -86,7 +86,7 @@ function draw() {
     fill(0);
     textAlign(CENTER);
     textSize(16);
-    text("Betrayed... Click the triangle", width / 2, height - 30);
+    text("Betrayed...", width / 2, height - 30);
   }
 }
 
