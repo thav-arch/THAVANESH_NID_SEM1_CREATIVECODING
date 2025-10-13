@@ -1,6 +1,6 @@
 let size = 250, f1, f2, f3, f0;
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(innerHeight, innerWidth);
   frameRate(3);
 }
 
