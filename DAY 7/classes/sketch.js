@@ -7,6 +7,11 @@ function setup() {
   yourCar=new Car(150,200,200);
 }
 
+
+
+
+
+
 function draw() {
   background(220);
   myCar.show();
