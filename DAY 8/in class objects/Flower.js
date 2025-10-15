@@ -20,7 +20,7 @@ class Flower {
 
 
         fill("purple");
-        ellipse (this.x,this.y,20);
+        ellipse (this.x,this.y,25);
 
         // rotate (60);
 
@@ -30,7 +30,7 @@ class Flower {
         this.x += this.xSpeed;
         this.y += this.ySpeed;
 
-        if(this.x>height || this.x<0) {
+        if(this.x>width || this.x<0) {
             this.xSpeed = -this.xSpeed;
         }
 

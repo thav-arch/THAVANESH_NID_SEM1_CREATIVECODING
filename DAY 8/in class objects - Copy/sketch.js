@@ -2,6 +2,7 @@ let flowers = [];
 function setup() {
   createCanvas(innerWidth, innerHeight);
   myFlower = new Flower (200,200);
+  frameRate(60);
 }
 
 function draw() {

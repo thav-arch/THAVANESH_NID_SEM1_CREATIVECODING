@@ -17,6 +17,9 @@ function mouseClicked (){
   flowers.push(tempFlower);
 }
 
+
+// THE FLOWERS ARE COLLDING IN MID WAY
+
 //draw flower where i click on the canvas
 //step 1 - click
 //step 2 - create flower (let variable = new)
