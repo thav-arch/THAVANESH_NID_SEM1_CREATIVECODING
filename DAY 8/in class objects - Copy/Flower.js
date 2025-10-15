@@ -26,7 +26,9 @@ class Flower {
         this.x += this.xSpeed;
         this.y += this.ySpeed;
 
-        if (this.x > height || this.x < 0) {
+           // there was an error 
+
+        if (this.x > width || this.x < 0) {
             this.xSpeed = -this.xSpeed;
         }
 
@@ -51,10 +53,14 @@ class Flower {
     }
 
     checkCollision(otherFlower){
+
+        
         let distance = dist(this.x, this.y, otherFlower.x, otherFlower.y);
         if (distance < this.size/2 + otherFlower.size/2){
             this.xSpeed = -this.xSpeed
             this.ySpeed = -this.ySpeed
+
+         
             
         }
     }
