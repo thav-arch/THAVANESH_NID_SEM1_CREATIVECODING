@@ -106,8 +106,7 @@
 // }
 
 
-// 🌙 Stages of Grief — Beginner-Friendly Version (No constrain())
-// This version avoids the use of constrain() and instead uses logic-based limits.
+
 
 // SETUP VARIABLES 
 
@@ -218,8 +217,9 @@ function draw() {
   }
 }
 
-// ---------------- COLOR BLENDING FUNCTION ----------------
+//  COLOR BLENDING FUNCTION 
 function getColor(p) {
+
   // Manual bounds check instead of constrain()
   if (p < 0) p = 0;
   if (p > 1) p = 1;
