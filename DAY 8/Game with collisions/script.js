@@ -1,4 +1,3 @@
-
 // // Stages of Grief — Beginner-Friendly with Obstacles and Ending Quote
 
 // let x, y, r = 80;             // Position and size of main sphere
@@ -105,10 +104,7 @@
 //   return lerpColor(colors[i], colors[j], t);
 // }
 
-
-
-
-// SETUP VARIABLES 
+// SETUP VARIABLES
 
 // let x, y, r = 80;
 // let colors = [];
@@ -217,7 +213,7 @@
 //   }
 // }
 
-// //  COLOR BLENDING FUNCTION 
+// //  COLOR BLENDING FUNCTION
 // function getColor(p) {
 
 //   // Manual bounds check instead of constrain()
@@ -232,8 +228,8 @@
 //   return lerpColor(colors[i], colors[j], t);
 // }
 
-
 // script.js
+let gameState = 0; // 0 = start screen, 1 = game, 2 = end
 let x, y, r;
 let colors = [];
 let obstacles = [];
@@ -244,6 +240,7 @@ let textAlpha = 0;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
+  textFont("Poppins");
 
   x = 100;
   y = height / 2;
@@ -254,13 +251,50 @@ function setup() {
     color(10, 10, 10),
     color(80, 80, 80),
     color(180, 180, 200),
-    color(220, 240, 255)
+    color(220, 240, 255),
   ];
 
   createObstacles();
 }
 
 function draw() {
+  background(20);
+
+  if (gameState === 0) {
+    showStartScreen();
+  } else if (gameState === 1) {
+    playGame();
+  } else if (gameState === 2) {
+    showEnding(getColor(x / width));
+  }
+}
+
+// --- START SCREEN ---
+function showStartScreen() {
+  background(15, 15, 15);
+  fill(255);
+  textAlign(CENTER, CENTER);
+
+  textSize(50);
+  textStyle(BOLD);
+  text("🌙 Stages of Healing", width / 2, height / 2 - 80);
+
+  textSize(20);
+  textStyle(NORMAL);
+  text(
+    "Move the circle through obstacles toward the light \n \n A=Back ,W=Up, D=Forwards, S=Down",
+    width / 2,
+    height / 2
+  );
+
+  textSize(20);
+  fill(200);
+  text("Press ENTER to begin", width / 2, height / 2 + 100);
+}
+
+// --- MAIN GAME LOOP ---
+
+function playGame() {
   let progress = constrain(x / width, 0, 1);
   let bg = getColor(progress);
   background(bg);
@@ -274,7 +308,22 @@ function draw() {
 
     if (x >= width - 50) ending = true;
   } else {
-    showEnding(bg);
+    gameState = 2; // go to ending screen
+  }
+}
+
+// --- Smooth background blend ---
+function getColor(p) {
+  let i = floor(p * (colors.length - 1));
+  let j = min(i + 1, colors.length - 1);
+  let t = (p * (colors.length - 1)) % 1;
+  return lerpColor(colors[i], colors[j], t);
+}
+
+// --- Handle key press ---
+function keyPressed() {
+  if (gameState === 0 && keyCode === ENTER) {
+    gameState = 1; // start game
   }
 }
 

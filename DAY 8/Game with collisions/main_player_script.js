@@ -28,7 +28,7 @@ function showEnding(bg) {
   textAlign(CENTER, CENTER);
   textSize(28);
   text(
-    "Change is hard at first,\nMessy in the middle,\nAnd gorgeous at the end.",
+    "Change is hard at first, Messy in the middle,\nAnd gorgeous at the end.",
     width / 2,
     height / 2 + 100
   );
