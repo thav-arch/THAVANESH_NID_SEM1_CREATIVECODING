@@ -228,19 +228,50 @@
 //   return lerpColor(colors[i], colors[j], t);
 // }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------------------------------------------------------------------------------------//z
+
+
+
+
+
+
+
 // script.js
 let gameState = 0; // 0 = start screen, 1 = game, 2 = end
 let x, y, r;
 let colors = [];
 let obstacles = [];
-let numObs = 5;
+let numObs = 20; //MORE OBS
 let ending = false;
 let textAlpha = 0;
+let sound;
+
+function preload() {
+sound = loadSound('assets/BGM.mp3'); // Load your sound file
+}
+
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
-  textFont("Helvetica");
+  textFont("Century Schoolbook");
 
   x = 100;
   y = height / 2;
@@ -277,7 +308,7 @@ function showStartScreen() {
 
   textSize(50);
   textStyle(BOLD);
-  text("🌙  Stages of Healing 🌙 ", width / 2, height / 2 - 80);
+  text("◐ ● ⚬  Stages of Healing  ⚬ ● ◑ ", width / 2, height / 2 - 80);
 
   textSize(20);
   textStyle(NORMAL);
