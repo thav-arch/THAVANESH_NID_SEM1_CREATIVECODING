@@ -269,6 +269,7 @@ sound = loadSound('assets/BGM.mp3'); // Load your sound file
 
 
 function setup() {
+  sound.play();
   createCanvas(windowWidth, windowHeight);
   noStroke();
   textFont("Century Schoolbook");
