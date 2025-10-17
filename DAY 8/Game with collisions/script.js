@@ -240,7 +240,7 @@ let textAlpha = 0;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
-  textFont("Poppins");
+  textFont("Helvetica");
 
   x = 100;
   y = height / 2;
@@ -277,12 +277,12 @@ function showStartScreen() {
 
   textSize(50);
   textStyle(BOLD);
-  text("🌙 Stages of Healing", width / 2, height / 2 - 80);
+  text("🌙  Stages of Healing 🌙 ", width / 2, height / 2 - 80);
 
   textSize(20);
   textStyle(NORMAL);
   text(
-    "Move the circle through obstacles toward the light \n \n A=Back ,W=Up, D=Forwards, S=Down",
+    "Move the circle through obstacles toward the light \n \n USE ARROW KEYS FOR MOVEMENT",
     width / 2,
     height / 2
   );
