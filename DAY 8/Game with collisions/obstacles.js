@@ -1,5 +1,6 @@
 // obstacles.js
-function createObstacles() {
+function createObstacles() { //creates multiple obstacles and stores them in the obstacles array.
+
   for (let i = 0; i < numObs; i++) {
     obstacles.push({
       x: random(width / 2, width),
