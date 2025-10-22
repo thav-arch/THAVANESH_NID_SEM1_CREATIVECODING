@@ -105,6 +105,71 @@
 
 // main_player_script.js
 
+// function movePlayer() {
+//   if (keyIsDown(RIGHT_ARROW)) x += 2;
+//   if (keyIsDown(LEFT_ARROW)) x -= 2;
+//   if (keyIsDown(UP_ARROW)) y -= 2;
+//   if (keyIsDown(DOWN_ARROW)) y += 2;
+// }
+
+// function keepPlayerInside() {
+//   x = constrain(x, 50, width - 50);
+//   y = constrain(y, 50, height - 50);
+// }
+
+// function drawPlayer() {
+//   // Calculate progress based on horizontal movement (0 = start, 1 = end)
+//   let progress = constrain(x / width, 0, 1);
+
+//   // Define the color transition: dark → medium → light
+//   let darkColor = color(15, 15, 30);        // very dark indigo
+//   let midColor = color(80, 130, 200);       // calm blue
+//   let lightColor = color(220, 240, 255);    // pale sky blue (final)
+
+//   // Smooth transition using two stages
+//   let sphereColor;
+//   if (progress < 0.5) {
+//     sphereColor = lerpColor(darkColor, midColor, map(progress, 0, 0.5, 0, 1));
+//   } else {
+//     sphereColor = lerpColor(midColor, lightColor, map(progress, 0.5, 1, 0, 1));
+//   }
+
+//   // Gentle glowing aura around the player
+//   noStroke();
+//   for (let i = 3; i > 0; i--) {
+//     fill(red(sphereColor), green(sphereColor), blue(sphereColor), 40 * i);
+//     ellipse(x, y, r + i * 20);
+//   }
+
+//   // Main player circle
+//   fill(sphereColor);
+//   ellipse(x, y, r);
+// }
+
+// function showEnding(bg) {
+//   // Smoothly move and grow towards the center
+//   x = lerp(x, width / 2, 0.02);
+//   y = lerp(y, height / 2, 0.02);
+//   r = lerp(r, 120, 0.02);
+
+//   drawPlayer(); // draw with final color (light sky blue)
+
+//   // Fade-in ending message
+//   textAlpha = lerp(textAlpha, 255, 0.02);
+//   fill(0, 50, 150, textAlpha);
+//   textAlign(CENTER, CENTER);
+//   textSize(28);
+//   text(
+//     "Change is hard at first, Messy in the middle,\nAnd gorgeous at the end.",
+//     width / 2,
+//     height / 2 + 100
+//   );
+// }
+
+
+// VERSION 4
+// main_player_script.js
+
 function movePlayer() {
   if (keyIsDown(RIGHT_ARROW)) x += 2;
   if (keyIsDown(LEFT_ARROW)) x -= 2;
@@ -118,49 +183,37 @@ function keepPlayerInside() {
 }
 
 function drawPlayer() {
-  // Calculate progress based on horizontal movement (0 = start, 1 = end)
+  // 🌈 Player color transitions from black → white based on position
   let progress = constrain(x / width, 0, 1);
+  let sphereColor = lerpColor(color(0), color(255), progress);
 
-  // Define the color transition: dark → medium → light
-  let darkColor = color(15, 15, 30);        // very dark indigo
-  let midColor = color(80, 130, 200);       // calm blue
-  let lightColor = color(220, 240, 255);    // pale sky blue (final)
-
-  // Smooth transition using two stages
-  let sphereColor;
-  if (progress < 0.5) {
-    sphereColor = lerpColor(darkColor, midColor, map(progress, 0, 0.5, 0, 1));
-  } else {
-    sphereColor = lerpColor(midColor, lightColor, map(progress, 0.5, 1, 0, 1));
-  }
-
-  // Gentle glowing aura around the player
+  // Gentle glowing aura
   noStroke();
   for (let i = 3; i > 0; i--) {
     fill(red(sphereColor), green(sphereColor), blue(sphereColor), 40 * i);
     ellipse(x, y, r + i * 20);
   }
 
-  // Main player circle
+  // Main player
   fill(sphereColor);
   ellipse(x, y, r);
 }
 
-function showEnding(bg) {
-  // Smoothly move and grow towards the center
+function showEnding() {
+  // Center and enlarge player
   x = lerp(x, width / 2, 0.02);
   y = lerp(y, height / 2, 0.02);
   r = lerp(r, 120, 0.02);
 
-  drawPlayer(); // draw with final color (light sky blue)
+  drawPlayer();
 
   // Fade-in ending message
   textAlpha = lerp(textAlpha, 255, 0.02);
-  fill(0, 50, 150, textAlpha);
+  fill(30, 60, 160, textAlpha);
   textAlign(CENTER, CENTER);
   textSize(28);
   text(
-    "Change is hard at first, Messy in the middle,\nAnd gorgeous at the end.",
+    "“Accept what you are able to do and what you are not able to do. \nAccept the past as past, without denying it or discarding it. \nLearn to forgive yourself and to forgive others. Don't assume that it's too late to get involved.”",
     width / 2,
     height / 2 + 100
   );

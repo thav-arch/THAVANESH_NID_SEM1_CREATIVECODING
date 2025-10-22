@@ -251,40 +251,146 @@
 
 
 
+// VERSION 4
+// // script.js
+// let gameState = 0; // 0 = start screen, 1 = game, 2 = end
+// let x, y, r;
+// let colors = [];
+// let obstacles = [];
+// let numObs = 20; //MORE OBS
+// let ending = false;
+// let textAlpha = 0;
+// let sound;
 
+// function preload() {
+// sound = loadSound('assets/BGM.mp3'); // Load your sound file
+// }
+
+
+
+// function setup() {
+//   sound.play();
+//   createCanvas(windowWidth, windowHeight);
+//   noStroke();
+//   textFont("Century Schoolbook");
+
+//   x = 100;
+//   y = height / 2;
+//   r = 80;
+
+//   // Background color stages
+//   colors = [
+//     color(10, 10, 10),
+//     color(80, 80, 80),
+//     color(180, 180, 200),
+//     color(220, 240, 255),
+//   ];
+
+//   createObstacles();
+// }
+
+// function draw() {
+//   background(20);
+
+//   if (gameState === 0) {
+//     showStartScreen();
+//   } else if (gameState === 1) {
+//     playGame();
+//   } else if (gameState === 2) {
+//     showEnding(getColor(x / width));
+//   }
+// }
+
+// // --- START SCREEN ---
+// function showStartScreen() {
+//   background(15, 15, 15);
+//   fill(255);
+//   textAlign(CENTER, CENTER);
+
+//   textSize(50);
+//   textStyle(BOLD);
+//   text("◐ ● ⚬  Stages of Healing  ⚬ ● ◑ ", width / 2, height / 2 - 80);
+
+//   textSize(20);
+//   textStyle(NORMAL);
+//   text(
+//     "Move the circle through obstacles toward the light \n \n USE ARROW KEYS FOR MOVEMENT",
+//     width / 2,
+//     height / 2
+//   );
+
+//   textSize(20);
+//   fill(200);
+//   text("Press ENTER to begin", width / 2, height / 2 + 100);
+// }
+
+// // --- MAIN GAME LOOP ---
+
+// function playGame() {
+//   let progress = constrain(x / width, 0, 1);
+//   let bg = getColor(progress);
+//   background(bg);
+
+//   if (!ending) {
+//     movePlayer();
+//     keepPlayerInside();
+//     drawPlayer(bg);
+//     updateObstacles();
+//     checkCollisions();
+
+//     if (x >= width - 50) ending = true;
+//   } else {
+//     gameState = 2; // go to ending screen
+//   }
+// }
+
+// // --- Smooth background blend ---
+// function getColor(p) {
+//   let i = floor(p * (colors.length - 1));
+//   let j = min(i + 1, colors.length - 1);
+//   let t = (p * (colors.length - 1)) % 1;
+//   return lerpColor(colors[i], colors[j], t);
+// }
+
+// // --- Handle key press ---
+// function keyPressed() {
+//   if (gameState === 0 && keyCode === ENTER) {
+//     gameState = 1; // start game
+//   }
+// }
+
+// // Smooth background blend
+// function getColor(p) {
+//   let i = floor(p * (colors.length - 1));
+//   let j = min(i + 1, colors.length - 1);
+//   let t = (p * (colors.length - 1)) % 1;
+//   return lerpColor(colors[i], colors[j], t);
+// }
+
+
+// VERSION 5
 // script.js
-let gameState = 0; // 0 = start screen, 1 = game, 2 = end
+let gameState = 0; // 0 = start, 1 = game, 2 = end
 let x, y, r;
-let colors = [];
 let obstacles = [];
-let numObs = 20; //MORE OBS
+let numObs = 20;
 let ending = false;
 let textAlpha = 0;
 let sound;
 
 function preload() {
-sound = loadSound('assets/BGM.mp3'); // Load your sound file
+  sound = loadSound('assets/BGM.mp3'); // Background music
 }
 
-
-
 function setup() {
-  sound.play();
   createCanvas(windowWidth, windowHeight);
   noStroke();
   textFont("Century Schoolbook");
+  sound.loop(); // loop music
 
   x = 100;
   y = height / 2;
   r = 80;
-
-  // Background color stages
-  colors = [
-    color(10, 10, 10),
-    color(80, 80, 80),
-    color(180, 180, 200),
-    color(220, 240, 255),
-  ];
 
   createObstacles();
 }
@@ -297,72 +403,61 @@ function draw() {
   } else if (gameState === 1) {
     playGame();
   } else if (gameState === 2) {
-    showEnding(getColor(x / width));
+    showEnding();
   }
 }
 
 // --- START SCREEN ---
 function showStartScreen() {
-  background(15, 15, 15);
+  background(10, 20, 40);
   fill(255);
   textAlign(CENTER, CENTER);
 
   textSize(50);
   textStyle(BOLD);
-  text("◐ ● ⚬  Stages of Healing  ⚬ ● ◑ ", width / 2, height / 2 - 80);
+  text("◐ Stages of Healing ◑", width / 2, height / 2 - 80);
 
   textSize(20);
   textStyle(NORMAL);
   text(
-    "Move the circle through obstacles toward the light \n \n USE ARROW KEYS FOR MOVEMENT",
+    "Move the circle through the world toward calmness.\n\nUSE ARROW KEYS TO MOVE",
     width / 2,
     height / 2
   );
 
-  textSize(20);
   fill(200);
   text("Press ENTER to begin", width / 2, height / 2 + 100);
 }
 
 // --- MAIN GAME LOOP ---
-
 function playGame() {
-  let progress = constrain(x / width, 0, 1);
-  let bg = getColor(progress);
-  background(bg);
+  // 🌊 Breathing background effect
+  let t = millis() * 0.001;
+  let baseColor = color(180, 210, 255);
+  let pulse = sin(t) * 20; // oscillate brightness
+  let breathingColor = color(
+    red(baseColor) + pulse,
+    green(baseColor) + pulse,
+    blue(baseColor) + pulse
+  );
+  background(breathingColor);
 
   if (!ending) {
     movePlayer();
     keepPlayerInside();
-    drawPlayer(bg);
+    drawPlayer();
     updateObstacles();
     checkCollisions();
 
-    if (x >= width - 50) ending = true;
+    if (x >= width - 100) ending = true;
   } else {
-    gameState = 2; // go to ending screen
+    gameState = 2; // transition to ending
   }
-}
-
-// --- Smooth background blend ---
-function getColor(p) {
-  let i = floor(p * (colors.length - 1));
-  let j = min(i + 1, colors.length - 1);
-  let t = (p * (colors.length - 1)) % 1;
-  return lerpColor(colors[i], colors[j], t);
 }
 
 // --- Handle key press ---
 function keyPressed() {
   if (gameState === 0 && keyCode === ENTER) {
-    gameState = 1; // start game
+    gameState = 1;
   }
-}
-
-// Smooth background blend
-function getColor(p) {
-  let i = floor(p * (colors.length - 1));
-  let j = min(i + 1, colors.length - 1);
-  let t = (p * (colors.length - 1)) % 1;
-  return lerpColor(colors[i], colors[j], t);
 }
