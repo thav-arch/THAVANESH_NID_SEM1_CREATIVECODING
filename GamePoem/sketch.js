@@ -2,6 +2,61 @@
 // Canvas 800x600, 60 FPS
 // Game states: 0..6 as specified
 // Aesthetic: Minimalist Monochrome + Conceptual Abstract (subtle glows, soft particles)
+// ---------------- SUBTITLE SYSTEM ----------------
+let subtitle = {
+  text: "",
+  alpha: 0,
+  state: "idle",  // idle | fadeIn | hold | fadeOut
+  timer: 0,
+  fadeInTime: 120,
+  holdTime: 200,
+  fadeOutTime: 120,
+};
+
+// Trigger a subtitle
+function showSubtitle(msg, hold = 200) {
+  subtitle.text = msg;
+  subtitle.alpha = 0;
+  subtitle.state = "fadeIn";
+  subtitle.timer = 0;
+  subtitle.holdTime = hold;
+}
+
+// Render subtitles
+function drawSubtitle() {
+  if (subtitle.state === "idle") return;
+
+  push();
+  textAlign(CENTER, CENTER);
+  textSize(22);
+  fill(255, subtitle.alpha);
+  noStroke();
+
+  text(subtitle.text, width / 2, height - 80);
+  pop();
+
+  // state machine
+  if (subtitle.state === "fadeIn") {
+    subtitle.alpha += 255 / subtitle.fadeInTime;
+    if (subtitle.alpha >= 255) {
+      subtitle.alpha = 255;
+      subtitle.state = "hold";
+      subtitle.timer = 0;
+    }
+  } else if (subtitle.state === "hold") {
+    subtitle.timer++;
+    if (subtitle.timer >= subtitle.holdTime) {
+      subtitle.state = "fadeOut";
+    }
+  } else if (subtitle.state === "fadeOut") {
+    subtitle.alpha -= 255 / subtitle.fadeOutTime;
+    if (subtitle.alpha <= 0) {
+      subtitle.alpha = 0;
+      subtitle.state = "idle";
+    }
+  }
+}
+
 
 let gameState = 0;
 const START_SCREEN = 0;
@@ -228,6 +283,7 @@ function draw() {
     let t = constrain(frameSinceState / scene1Time, 0, 1);
     let bgv = lerp(0, BG_DARK20[0], t);
     background(bgv);
+    
     drawHUD("SCENE 1 — INERTIA");
     // movement: strictly capped to SC1_VMAX, no vertical & no gravity
     if (input.left) echo.vx = -SC1_VMAX;
